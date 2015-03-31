@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331014132) do
+ActiveRecord::Schema.define(version: 20150331014641) do
 
   create_table "members", force: :cascade do |t|
     t.string   "first_name"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20150331014132) do
     t.boolean  "policies_acceptance"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "fee"
+    t.integer  "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

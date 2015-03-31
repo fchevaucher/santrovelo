@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
+    @members = Member.includes(:memberships).all
   end
 
   # GET /members/1
@@ -15,6 +15,7 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
+    @member.memberships.build
   end
 
   # GET /members/1/edit
@@ -69,6 +70,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :email, :phone_number, :policies_acceptance)
+      params.require(:member).permit(:first_name, :last_name, :email, :phone_number, :policies_acceptance, memberships_attributes: [:id, :fee])
     end
 end

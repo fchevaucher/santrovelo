@@ -28,6 +28,12 @@
     <%= f.text_field :phone_number %>
   </div>
   <div class="field">
+    <%= f.fields_for :memberships do |membership_form| %>
+      <%= membership_form.label :fee, "Membership fee" %><br>
+      <%= membership_form.number_field :fee %>
+    <% end %>
+  </div>
+  <div class="field">
     <%= f.label :policies_acceptance %><br>
     <%= f.check_box :policies_acceptance, { checked: 'checked' } %>
   </div>
