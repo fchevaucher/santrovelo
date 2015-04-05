@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Member info</h2>
 <p>
   <strong>First name:</strong>
   <%= @member.first_name %>
@@ -21,14 +22,38 @@
 </p>
 
 <p>
-  <strong>Valid membership:</strong>
-  <%= @member.has_valid_membership? %>
-</p>
-
-<p>
   <strong>Policies acceptance:</strong>
   <%= @member.policies_acceptance %>
 </p>
 
+<p>
+  <strong>Valid membership:</strong>
+  <%= @member.has_valid_membership? %>
+</p>
+
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>
+
+<h2>Membership info</h2>
+
+<%= link_to 'Add Membership', new_member_membership_path(@member) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Membership fee</th>
+      <th>Created at</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @member.memberships.each do |membership| %>
+      <tr>
+        <td>$<%= membership.fee %></td>
+        <td><%= membership.created_at %></td>
+        <td><%= link_to 'Destroy', member_membership_path(@member, membership), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

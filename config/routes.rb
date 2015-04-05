@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :members
+  resources :members do
+    resources :memberships
+  end
 
   root "members#index"
   # The priority is based upon order of creation: first created -> highest priority.
