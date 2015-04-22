@@ -4,7 +4,11 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.includes(:memberships).all
+    @members = if params[:search]
+      Member.search(params[:search])
+    else
+      Member.includes(:memberships).all
+    end
   end
 
   # GET /members/1

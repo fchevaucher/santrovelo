@@ -8,6 +8,16 @@ class Member < ActiveRecord::Base
 
   accepts_nested_attributes_for :memberships
 
+  def self.search condition
+    self.where(
+      "first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone_number LIKE ?", 
+      "%#{condition}%", 
+      "%#{condition}%", 
+      "%#{condition}%", 
+      "%#{condition}%"
+    )
+  end
+
   def has_valid_membership?
     memberships.any?{ |membership| membership.created_at > 1.year.ago }
   end
