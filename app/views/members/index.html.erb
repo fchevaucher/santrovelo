@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Members</h1>
+<h1>Bike Shop Members</h1>
 
 <%= form_tag("/members", method: :get) do |f| %>
   <div class="field">
-    <%= text_field_tag :search %>
+    <%= text_field_tag :search, @search %>
     <%= submit_tag "Search" %>
   </div>
 <% end %>
 
+<%= link_to 'Show All Members', members_path %>
 <%= link_to 'New Member', new_member_path %>
 
 <br/><br/>
